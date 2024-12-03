@@ -15,13 +15,16 @@
                 @if(session('success'))
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
                     <strong class="font-bold">{{ session('success') }}</strong>
-                    <span class="block sm:inline">Student has been added successfully.</span>
                 </div>
                 @endif
                 @if(session('destroy'))
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="danger">
                     <strong class="font-bold">{{ session('destroy') }}</strong>
-                    <span class="block sm:inline">Student has been deleted successfully.</span>
+                </div>
+                @endif
+                @if(session('update'))
+                <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    <strong class="font-bold">{{ session('update') }}</strong>
                 </div>
                 @endif
                 <h3 class="text-lg font-medium mb-4">Add New Student</h3>
@@ -47,7 +50,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Student</button>
+                        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add Student</button>
                     </div>
                 </form>
             </div>
@@ -75,7 +78,7 @@
                                 <td class="py-2 border-b px-4 text-center">{{ $student -> phone }}</td>
                                 <td class="py-2 border-b px-4 text-center">{{ $student -> address }}</td>
                                 <td class="py-2 border-b px-4">
-                                    <a href="#" class="text-blue-500 hover:text-blue-700">Edit</a>
+                                    <a href="{{ route('student.edit', $student->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
                                     <form method="POST" action="{{ route('student.destroy', $student->id) }}" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
